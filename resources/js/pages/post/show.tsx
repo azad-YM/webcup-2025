@@ -1,29 +1,14 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { motion, AnimatePresence } from "framer-motion"
 import {
-  Heart,
-  MessageCircle,
   Share2,
-  Music,
-  PauseCircle,
-  PlayCircle,
   Home,
-  ChevronLeft,
-  ChevronRight,
-  Send,
   X,
   MoreHorizontal,
-  Reply,
 } from "lucide-react"
 import { toast } from "sonner"
-import { Toaster } from "@/components/ui/sonner"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { cn } from "@/lib/utils"
 import { Link, router } from "@inertiajs/react"
 import RootLayout from "@/layouts/app/app"
 import { ConsultPageSection } from "@/sections/consult-page/consult-page"

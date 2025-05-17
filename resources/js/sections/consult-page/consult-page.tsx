@@ -16,15 +16,13 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Link, } from "@inertiajs/react"
-import { Comment, PageDetail, ReplyType } from "@/lib/types"
-import { useEffect, useRef, useState } from "react"
-import { toast } from "sonner"
+import { PageDetail } from "@/lib/types"
 import { Button } from "@/components/ui/button"
 import { useConsultPage } from "./consult-page.hook"
 
 export const ConsultPageSection = ({ page }: { page: PageDetail }) => {
   const presenter = useConsultPage(page)
-
+  console.log(page, "hhhe")
   return (
     <div className="container mx-auto px-4 py-6 md:py-12">
       <motion.div

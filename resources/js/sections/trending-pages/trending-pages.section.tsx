@@ -8,10 +8,11 @@ import { Link } from "@inertiajs/react"
 import { MoodSelector } from "./mood-selector"
 import { Page } from "@/lib/types"
 import { useTrendingPage } from "./trending-pages.hook"
+import { SkeletonTrandingPages } from "./skeleton-tranding-pages"
 
 export function TrendingPages() {
   const presenter = useTrendingPage()
-
+  console.log(presenter.pages)
   return (
     <div className='md:w-[80%] mx-auto'>
       <section className="container px-4 py-8">
@@ -26,9 +27,12 @@ export function TrendingPages() {
             <option>Most Dramatic</option>
           </select>
         </div>
-        <ShowedTrendingPages 
-          trendingPages={presenter.pages}
-        />
+        {presenter.isPending 
+          ? <SkeletonTrandingPages />
+          : <ShowedTrendingPages 
+              trendingPages={presenter.pages}
+            />
+        }
       </section>
     </div>
   )

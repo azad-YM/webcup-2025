@@ -1,17 +1,19 @@
-import { AppContent } from '@/components/app-content';
-import { AppHeader } from '@/components/app-header';
-import { AppShell } from '@/components/app-shell';
 import { Toaster } from '@/components/ui/sonner';
-import { type BreadcrumbItem } from '@/types';
 import type { PropsWithChildren } from 'react';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
 export default function RootLayout({ children }: PropsWithChildren<{}>) {
-    return (
+  const queryClient = new QueryClient()
+
+  return (
+    <QueryClientProvider client={queryClient}>
       <div>
-        <div>
-          {children}
-        </div>
-        <Toaster />
+        {children}
       </div>
-    );
+      <Toaster />
+    </QueryClientProvider>
+  );
 }
