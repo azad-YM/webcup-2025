@@ -85,7 +85,7 @@ export function TrendingPages() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: index * 0.1 }}
         >
-          <Link href={`/page/${page.slug}`} className="block h-full">
+          <Link href={`/${page.slug}`} className="block h-full">
             <Card className="h-full overflow-hidden hover:shadow-lg transition-shadow group">
               <CardHeader className="p-0">
                 <div className="relative h-48 w-full">

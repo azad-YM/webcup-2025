@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -9,7 +10,9 @@ Route::get('/', function () {
 
 Route::group([], function() {
     Route::get('/', fn() => Inertia::render('welcome'))->name('home');
-    Route::get('create', fn() => Inertia::render('post/create'))->name("create");
+    Route::get('/create', fn() => Inertia::render('post/create'))->name("create");
+    Route::get('/{slug}', [PostController::class, 'show'])->name("show");
+
 
 });
 

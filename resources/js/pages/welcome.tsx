@@ -1,3 +1,4 @@
+import RootLayout from '@/layouts/app/app';
 import { HeroSection } from '@/sections/hero-section/hero.section';
 import { MoodSelector } from '@/sections/mod-selector/mood-selector.section';
 import { TrendingPages } from '@/sections/trending-pages/trending-pages.section';
@@ -8,7 +9,7 @@ export default function Welcome() {
     const { auth } = usePage<SharedData>().props;
 
     return (
-      <>
+      <RootLayout >
         <Head title="Welcome">
           <link rel="preconnect" href="https://fonts.bunny.net" />
           <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
@@ -31,9 +32,8 @@ export default function Welcome() {
               </div>
               <TrendingPages />
             </section>
-
           </div>
         </main>
-      </>
+      </RootLayout>
     );
 }
