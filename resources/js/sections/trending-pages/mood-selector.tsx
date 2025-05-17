@@ -3,18 +3,9 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { Mood } from "@/lib/types"
 
-const moods = [
-  { emoji: "😭", name: "Dramatic", color: "bg-rose-500" },
-  { emoji: "😂", name: "Ironic", color: "bg-amber-500" },
-  { emoji: "😐", name: "Honest", color: "bg-blue-500" },
-  { emoji: "💅", name: "Classy", color: "bg-purple-500" },
-  { emoji: "🤪", name: "Absurd", color: "bg-green-500" },
-  { emoji: "🫣", name: "Cringe", color: "bg-pink-500" },
-  { emoji: "😒", name: "Passive-aggressive", color: "bg-indigo-500" },
-]
-
-export function MoodSelector() {
+export function MoodSelector({ moods }: { moods: Mood[] }) {
   const [selectedMood, setSelectedMood] = useState<string | null>(null)
 
   return (

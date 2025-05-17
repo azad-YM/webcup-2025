@@ -5,77 +5,36 @@ import { Badge } from "@/components/ui/badge"
 import { Heart, Eye, ExternalLink } from "lucide-react"
 import { motion } from "framer-motion"
 import { Link } from "@inertiajs/react"
-
-const trendingPages = [
-  {
-    id: "1",
-    title: "TheEnd of my Startup",
-    excerpt: "After 3 years, 4 pivots, and $2M in funding, it's time to say goodbye...",
-    mood: "Dramatic",
-    likes: 2453,
-    views: 12893,
-    image: "/placeholder.svg?height=200&width=400",
-    slug: "the-end-of-my-startup",
-    color: "bg-rose-500",
-  },
-  {
-    id: "2",
-    title: "Bye-bye Julie",
-    excerpt: "We had a good run, but your obsession with pineapple pizza was the final straw.",
-    mood: "Ironic",
-    likes: 1872,
-    views: 9432,
-    image: "/placeholder.svg?height=200&width=400",
-    slug: "bye-bye-julie",
-    color: "bg-amber-500",
-  },
-  {
-    id: "3",
-    title: "I quit Slack for good",
-    excerpt: "No more notifications. No more @channel. No more 'quick questions'.",
-    mood: "Passive-aggressive",
-    likes: 3241,
-    views: 15678,
-    image: "/placeholder.svg?height=200&width=400",
-    slug: "i-quit-slack-for-good",
-    color: "bg-indigo-500",
-  },
-  {
-    id: "4",
-    title: "Farewell, Corporate America",
-    excerpt: "After 10 years of TPS reports and meaningless meetings, I'm out.",
-    mood: "Classy",
-    likes: 1543,
-    views: 7865,
-    image: "/placeholder.svg?height=200&width=400",
-    slug: "farewell-corporate-america",
-    color: "bg-purple-500",
-  },
-  {
-    id: "5",
-    title: "So Long, Social Media",
-    excerpt: "Deleting all my accounts. Find me in the real world.",
-    mood: "Honest",
-    likes: 2187,
-    views: 11234,
-    image: "/placeholder.svg?height=200&width=400",
-    slug: "so-long-social-media",
-    color: "bg-blue-500",
-  },
-  {
-    id: "6",
-    title: "Goodbye to My 20s",
-    excerpt: "It's been wild. Hello responsible adulthood (maybe).",
-    mood: "Cringe",
-    likes: 1932,
-    views: 8765,
-    image: "/placeholder.svg?height=200&width=400",
-    slug: "goodbye-to-my-20s",
-    color: "bg-pink-500",
-  },
-]
+import { MoodSelector } from "./mood-selector"
+import { Page } from "@/lib/types"
+import { useTrendingPage } from "./trending-pages.hook"
 
 export function TrendingPages() {
+  const presenter = useTrendingPage()
+
+  return (
+    <div className='md:w-[80%] mx-auto'>
+      <section className="container px-4 py-8">
+        <h2 className="text-2xl font-bold tracking-tight mb-4">Choose a mood</h2>
+        <MoodSelector moods={presenter.moods} />
+      </section>
+      <section className="container px-4 py-8 md:py-8">
+        <div className="flex items-center justify-between mb-6">
+          <select className="bg-background border rounded-md px-3 py-1 text-sm">
+            <option>Most Popular</option>
+            <option>Newest</option>
+            <option>Most Dramatic</option>
+          </select>
+        </div>
+        <ShowedTrendingPages 
+          trendingPages={presenter.pages}
+        />
+      </section>
+    </div>
+  )
+}
+
+const ShowedTrendingPages = ({ trendingPages }: { trendingPages: Page[] }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {trendingPages.map((page, index) => (

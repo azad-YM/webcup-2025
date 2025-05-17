@@ -10,9 +10,6 @@ import { router } from "@inertiajs/react"
 import { useHero } from "./hero.hook"
 import { colors, emojis } from "@/lib/data"
 
-
-
-
 export function HeroSection() {
   const presenter = useHero()
 
@@ -173,17 +170,17 @@ export function HeroSection() {
 
           {/* Carousel de témoignages */}
           <motion.div
-            className="mt-16 w-full"
+            className="mt-12 w-full"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.2, duration: 0.8 }}
           >
-            <TestimonialCarousel />
+            <TestimonialCarousel testimonials={presenter.testimonials} />
           </motion.div>
 
           {/* Statistiques animées */}
           <motion.div
-            className="mt-16 flex flex-wrap justify-center gap-8"
+            className="mt-12 flex flex-wrap justify-center gap-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2.5, duration: 0.8 }}

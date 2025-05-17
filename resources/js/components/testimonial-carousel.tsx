@@ -4,52 +4,9 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Testimonial } from "@/lib/types"
 
-// Exemples de témoignages avec des situations d'adieu
-const testimonials = [
-  {
-    image: "/placeholder.svg?height=400&width=600",
-    title: "Quitting my toxic workplace",
-    author: "Sarah, 32",
-    quote: "After 5 years of burnout, I finally said goodbye with style.",
-    mood: "Dramatic",
-    color: "from-rose-900 to-rose-600",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=600",
-    title: "Breaking up with my boyfriend",
-    author: "Michael, 28",
-    quote: "It was time to move on. My farewell page said everything I couldn't say in person.",
-    mood: "Honest",
-    color: "from-blue-900 to-blue-600",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=600",
-    title: "Leaving my band after 10 years",
-    author: "Alex, 35",
-    quote: "Creative differences happen. My goodbye tour deserved a digital encore.",
-    mood: "Classy",
-    color: "from-purple-900 to-purple-600",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=600",
-    title: "Quitting social media for good",
-    author: "Emma, 26",
-    quote: "My last post was a link to my TheEnd page. The irony wasn't lost on anyone.",
-    mood: "Ironic",
-    color: "from-amber-700 to-amber-500",
-  },
-  {
-    image: "/placeholder.svg?height=400&width=600",
-    title: "Leaving my gaming guild",
-    author: "Tyler, 22",
-    quote: "After 3000+ hours together, they deserved more than just going offline.",
-    mood: "Passive-aggressive",
-    color: "from-indigo-900 to-indigo-600",
-  },
-]
-
-export function TestimonialCarousel() {
+export function TestimonialCarousel({ testimonials }: {testimonials: Testimonial[]}) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
@@ -104,7 +61,7 @@ export function TestimonialCarousel() {
   return (
     <div className="relative w-full max-w-4xl mx-auto overflow-hidden rounded-xl shadow-lg">
       {/* Main carousel */}
-      <div className="relative h-[300px] md:h-[400px] overflow-hidden">
+      <div className="relative h-[280px] overflow-hidden">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div
             key={currentIndex}
@@ -119,12 +76,6 @@ export function TestimonialCarousel() {
             <div className="relative h-full w-full">
               {/* Background image with overlay */}
               <div className="absolute inset-0 bg-black/40 z-10" />
-              <img
-                src={testimonials[currentIndex].image || "/placeholder.svg"}
-                alt={testimonials[currentIndex].title}
-                className="w-full h-full object-cover"
-              />
-
               {/* Gradient overlay */}
               <div
                 className={`absolute inset-0 bg-gradient-to-tr ${testimonials[currentIndex].color} opacity-60 z-20`}

@@ -10,6 +10,51 @@ export const useHero = () => {
   const controls = useAnimation()
   const [isMenuVisible, setIsMenuVisible] = useState(true)
 
+
+  // Exemples de témoignages avec des situations d'adieu
+  const testimonials = [
+    {
+      image: "/placeholder.svg?height=400&width=600",
+      title: "Quitting my toxic workplace",
+      author: "Sarah, 32",
+      quote: "After 5 years of burnout, I finally said goodbye with style.",
+      mood: "Dramatic",
+      color: "from-rose-900 to-rose-600",
+    },
+    {
+      image: "/placeholder.svg?height=400&width=600",
+      title: "Breaking up with my boyfriend",
+      author: "Michael, 28",
+      quote: "It was time to move on. My farewell page said everything I couldn't say in person.",
+      mood: "Honest",
+      color: "from-blue-900 to-blue-600",
+    },
+    {
+      image: "/placeholder.svg?height=400&width=600",
+      title: "Leaving my band after 10 years",
+      author: "Alex, 35",
+      quote: "Creative differences happen. My goodbye tour deserved a digital encore.",
+      mood: "Classy",
+      color: "from-purple-900 to-purple-600",
+    },
+    {
+      image: "/placeholder.svg?height=400&width=600",
+      title: "Quitting social media for good",
+      author: "Emma, 26",
+      quote: "My last post was a link to my TheEnd page. The irony wasn't lost on anyone.",
+      mood: "Ironic",
+      color: "from-amber-700 to-amber-500",
+    },
+    {
+      image: "/placeholder.svg?height=400&width=600",
+      title: "Leaving my gaming guild",
+      author: "Tyler, 22",
+      quote: "After 3000+ hours together, they deserved more than just going offline.",
+      mood: "Passive-aggressive",
+      color: "from-indigo-900 to-indigo-600",
+    },
+  ]
+
   // Référence pour la section héro
   const [heroRef, heroInView] = useInView({
     threshold: 0.1,
@@ -58,6 +103,7 @@ export const useHero = () => {
   }
 
   return {
+    testimonials,
     isHovering,
     setIsHovering,
     clickCount,
