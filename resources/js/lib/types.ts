@@ -66,3 +66,14 @@ export type Mood = {
   color: string;
 }
 
+export type AttachedFile = {
+  id: string
+  type: "image" | "music"
+  name: string
+  url: string
+}
+
+export type Theme = {
+  value: string,
+  label: string
+}
