@@ -17,7 +17,7 @@ class FarewellPageSeeder extends Seeder
             'mood_id' => 1,
             'author_id' => 1,
             'song' => 'https://www.blin.com/',
-            'color' => 'bg-rose-500',
+            'color' => 'pink',
             'likes' => 4692,
             'views' => 12876,
         ]);
@@ -30,7 +30,7 @@ class FarewellPageSeeder extends Seeder
             'mood_id' => 2,
             'author_id' => 3,
             'song' => 'https://didier.com/',
-            'color' => 'bg-amber-500',
+            'color' => 'amber',
             'likes' => 3731,
             'views' => 1702,
         ]);
@@ -43,7 +43,7 @@ class FarewellPageSeeder extends Seeder
             'mood_id' => 5,
             'author_id' => 2,
             'song' => 'https://www.le.fr/',
-            'color' => 'bg-pink-500',
+            'color' => 'pink',
             'likes' => 3054,
             'views' => 4953,
         ]);
@@ -56,7 +56,7 @@ class FarewellPageSeeder extends Seeder
             'mood_id' => 4,
             'author_id' => 2,
             'song' => 'https://www.tranquille.net/',
-            'color' => 'bg-blue-500',
+            'color' => 'blue',
             'likes' => 1222,
             'views' => 9801,
         ]);
@@ -69,7 +69,7 @@ class FarewellPageSeeder extends Seeder
             'mood_id' => 3,
             'author_id' => 1,
             'song' => 'https://www.fintech.fail/',
-            'color' => 'bg-indigo-500',
+            'color' => 'indigo',
             'likes' => 4320,
             'views' => 14011,
         ]);
@@ -82,7 +82,7 @@ class FarewellPageSeeder extends Seeder
             'mood_id' => 6,
             'author_id' => 3,
             'song' => 'https://www.solitude.fr/',
-            'color' => 'bg-yellow-500',
+            'color' => 'yellow',
             'likes' => 2198,
             'views' => 8754,
         ]);
@@ -95,7 +95,7 @@ class FarewellPageSeeder extends Seeder
             'mood_id' => 7,
             'author_id' => 2,
             'song' => 'https://www.trollfini.tv/',
-            'color' => 'bg-purple-500',
+            'color' => 'purple',
             'likes' => 3881,
             'views' => 13432,
         ]);
@@ -108,7 +108,7 @@ class FarewellPageSeeder extends Seeder
             'mood_id' => 1,
             'author_id' => 1,
             'song' => 'https://www.je-me-reconstruis.fr/',
-            'color' => 'bg-rose-500',
+            'color' => 'pink',
             'likes' => 3421,
             'views' => 10020,
         ]);

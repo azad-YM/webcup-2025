@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Post\FarewellPageController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -11,11 +11,11 @@ Route::get('/', function () {
 Route::group([], function() {
     Route::get('/', fn() => Inertia::render('welcome'))->name('home');
     Route::get('/create', fn() => Inertia::render('post/create'))->name("create");
-    Route::get('/{slug}', [PostController::class, 'show'])->name("show");
+    Route::get('/{slug}', [FarewellPageController::class, 'show'])->name("show");
 });
 
 Route::group([], function() {
-    Route::get('/api/pages',  [\App\Http\Controllers\Post\FarewellPageController::class, 'index']);
+    Route::get('/api/pages',  [FarewellPageController::class, 'index']);
     Route::get('/api/moods',  [\App\Http\Controllers\Post\MoodController::class, 'index']);
 });
 

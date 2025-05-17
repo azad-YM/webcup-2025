@@ -22,9 +22,9 @@ import { useConsultPage } from "./consult-page.hook"
 
 export const ConsultPageSection = ({ page }: { page: PageDetail }) => {
   const presenter = useConsultPage(page)
-  console.log(page, "hhhe")
+  
   return (
-    <div className="container mx-auto px-4 py-6 md:py-12">
+    <div className="relative z-1 container mx-auto px-4 py-6 md:py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -129,7 +129,7 @@ export const ConsultPageSection = ({ page }: { page: PageDetail }) => {
           <Button
             variant="ghost"
             size="sm"
-            className={cn("flex items-center gap-2 hover:bg-white/10", presenter.liked && "text-rose-400")}
+            className={cn("flex items-center gap-2 hover:bg-white/10 cursor-pointer", presenter.liked && "text-rose-400")}
             onClick={presenter.handleLike}
           >
             <Heart className={cn("h-5 w-5", presenter.liked && "fill-current")} />
@@ -139,14 +139,14 @@ export const ConsultPageSection = ({ page }: { page: PageDetail }) => {
           <Button
             variant="ghost"
             size="sm"
-            className="flex items-center gap-2 hover:bg-white/10"
+            className="flex items-center gap-2 hover:bg-white/10 cursor-pointer"
             onClick={() => presenter.setShowComments(!presenter.showComments)}
           >
             <MessageCircle className="h-5 w-5" />
             <span>{presenter.comments.reduce((acc, comment) => acc + 1 + comment.replies.length, 0)}</span>
           </Button>
 
-          <Button variant="ghost" size="sm" className="flex items-center gap-2 hover:bg-white/10" onClick={presenter.sharePost}>
+          <Button variant="ghost" size="sm" className="flex items-center gap-2 hover:bg-white/10 cursor-pointer" onClick={presenter.sharePost}>
             <Share2 className="h-5 w-5" />
             <span>Share</span>
           </Button>

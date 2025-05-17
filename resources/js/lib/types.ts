@@ -11,17 +11,12 @@ export type Page = {
 }
 
 export type PageDetail = {
-  id: string,
-  slug: string,
-  title: string,
   content: string,
-  mood: string,
   images: Array<string>,
   song: string,
   author: Author,
   date: string,
-  likes: number,
-}
+} & Page
 
 export type Author = {
   name: string,

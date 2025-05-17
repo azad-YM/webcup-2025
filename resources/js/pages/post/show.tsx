@@ -13,12 +13,8 @@ import { Link, router } from "@inertiajs/react"
 import RootLayout from "@/layouts/app/app"
 import { ConsultPageSection } from "@/sections/consult-page/consult-page"
 import { PageDetail } from "@/lib/types"
-import { pages } from "@/lib/data"
 
-
-export default function PageView({ slug }: { slug: string }) {
-  const page: PageDetail = { ...pages[slug as keyof typeof pages], slug, id: slug }
-
+export default function PageView({ page }: { page: PageDetail }) {
   if (!page) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -33,29 +29,8 @@ export default function PageView({ slug }: { slug: string }) {
     )
   }
 
-  const getMoodStyle = (mood: string) => {
-    switch (mood) {
-      case "dramatic":
-        return "bg-gradient-to-br from-rose-900 to-rose-600 text-white"
-      case "ironic":
-        return "bg-gradient-to-br from-amber-700 to-amber-500 text-white"
-      case "honest":
-        return "bg-gradient-to-br from-blue-900 to-blue-600 text-white"
-      case "classy":
-        return "bg-gradient-to-br from-purple-900 to-purple-600 text-white"
-      case "absurd":
-        return "bg-gradient-to-br from-green-800 to-green-500 text-white"
-      case "cringe":
-        return "bg-gradient-to-br from-pink-800 to-pink-500 text-white"
-      case "passive-aggressive":
-        return "bg-gradient-to-br from-indigo-900 to-indigo-600 text-white"
-      default:
-        return "bg-gradient-to-br from-gray-900 to-gray-600 text-white"
-    }
-  }
-
   const sharePost = () => {
-    navigator.clipboard.writeText(`https://theend.page/page/${slug}`)
+    navigator.clipboard.writeText(`https://theend.page/page/${page.slug}`)
     toast("Link copied!", {
       description: "Share it with the world.",
     })
@@ -63,8 +38,8 @@ export default function PageView({ slug }: { slug: string }) {
 
   return (
     <RootLayout>
-      <main className={`min-h-screen ${getMoodStyle(page.mood)}`}>
-        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay"></div>
+      <main className={`min-h-screen bg-${page.color}-500 text-white`}>
+        <div className="absolute z-0 inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay"></div>
 
         {/* Header with back button */}
         <header className="sticky top-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/10">

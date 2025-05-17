@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PageResource;
 use App\Models\FarewellPage;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class FarewellPageController extends Controller
 {
@@ -19,7 +20,7 @@ class FarewellPageController extends Controller
       ->latest()
       ->get()
     ;
-  
+
     return PageResource::collection($pages);
   }
 
@@ -31,8 +32,10 @@ class FarewellPageController extends Controller
     $page = FarewellPage::with(['author', 'mood', 'media', 'comments.replies.author'])
       ->where('slug', $slug)
       ->firstOrFail();
-    
-    return response()->json($page);
+
+      return Inertia::render('post/show', [
+      'page' => $page 
+    ]);
   }
 
   // Optionnel : méthode pour créer une page
