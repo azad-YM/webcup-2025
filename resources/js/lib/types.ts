@@ -10,6 +10,52 @@ export type Page = {
   color: string;
 }
 
+export type PageDetail = {
+  id: string,
+  slug: string,
+  title: string,
+  content: string,
+  mood: string,
+  images: Array<string>,
+  song: string,
+  author: Author,
+  date: string,
+  likes: number,
+}
+
+export type Author = {
+  name: string,
+  username: string,
+  avatar: string
+}
+
+export type ReplyType = {
+  id: string
+  author: {
+    name: string
+    avatar: string
+    username: string
+  }
+  content: string
+  timestamp: string
+  likes: number
+  isLiked?: boolean
+}
+
+export  type Comment = {
+  id: string
+  author: {
+    name: string
+    avatar: string
+    username: string
+  }
+  content: string
+  timestamp: string
+  likes: number
+  isLiked?: boolean
+  replies: ReplyType[]
+}
+
 export type Testimonial = {
   image: string;
   title: string;
@@ -24,3 +70,4 @@ export type Mood = {
   name: string;
   color: string;
 }
+
