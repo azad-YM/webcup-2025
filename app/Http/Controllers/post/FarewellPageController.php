@@ -37,6 +37,16 @@ class FarewellPageController extends Controller
       ->where('slug', $slug)
       ->firstOrFail();
 
+      // Clé unique pour cette page dans la session
+      $sessionKey = 'page_viewed_' . $page->id;
+      $viewedAt = session($sessionKey);
+
+      // Si la dernière vue remonte à +5 minutes, on incrémente
+      if (!$viewedAt || now()->diffInMinutes($viewedAt) >= 5) {
+          $page->increment('views');
+          session([$sessionKey => now()]);
+      }
+      
       return Inertia::render('post/show', [
       'page' => $page 
     ]);
