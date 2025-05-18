@@ -75,11 +75,11 @@ export const useConsultPage = (page: PageDetail) => {
   }
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === page.images.length - 1 ? 0 : prevIndex + 1))
+    setCurrentImageIndex((prevIndex) => (prevIndex === page.media.length - 1 ? 0 : prevIndex + 1))
   }
 
   const handlePrevImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? page.images.length - 1 : prevIndex - 1))
+    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? page.media.length - 1 : prevIndex - 1))
   }
 
   const handleSubmitComment = () => {

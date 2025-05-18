@@ -44,7 +44,7 @@ export const useCreatePage = () => {
       })
       return
     }
-
+    
     const data = {
       title,
       message,
@@ -88,7 +88,6 @@ export const useCreatePage = () => {
     Array.from(files).forEach((file) => {
       // Create a URL for the file
       const fileUrl = URL.createObjectURL(file)
-
       // Add to attached files
       setAttachedFiles((prev) => [
         ...prev,
@@ -97,6 +96,7 @@ export const useCreatePage = () => {
           type: "image",
           name: file.name,
           url: fileUrl,
+          file: file
         },
       ])
     })

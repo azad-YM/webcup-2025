@@ -17,14 +17,27 @@ export const postPage = async (data: {
   mood: string,
   attachedFiles: AttachedFile[]
 }) => {
+  const formData = new FormData()
+
+  formData.append('title', data.title)
+  formData.append('message', data.message)
+  formData.append('theme', data.theme)
+  formData.append('mood', data.mood)
+
+  data.attachedFiles.forEach((attachedFile, index) => {
+    // Assuming AttachedFile has a property 'file' of type File
+    if (attachedFile.file instanceof File) {
+      formData.append('attachedFiles[]', attachedFile.file)
+    }
+  })
+  
   try {
     const res = await fetch('/api/pages', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: formData
     })
 
     if (!res.ok) {

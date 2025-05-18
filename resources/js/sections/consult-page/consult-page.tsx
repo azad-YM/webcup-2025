@@ -22,7 +22,7 @@ import { useConsultPage } from "./consult-page.hook"
 
 export const ConsultPageSection = ({ page }: { page: PageDetail }) => {
   const presenter = useConsultPage(page)
-  
+  console.log(page, "salut")
   return (
     <div className="relative z-1 container mx-auto px-4 py-6 md:py-12">
       <motion.div
@@ -50,13 +50,13 @@ export const ConsultPageSection = ({ page }: { page: PageDetail }) => {
         {/* <GalerySection /> */}
 
         {/* Image Gallery */}
-        {page.images && page.images.length > 0 && (
+        {page.media && page.media.length > 0 && (
           <div className="relative mb-8 rounded-xl overflow-hidden">
             <div className="aspect-[16/9] relative">
               <AnimatePresence initial={false} mode="wait">
                 <motion.img
                   key={presenter.currentImageIndex}
-                  src={page.images[presenter.currentImageIndex]}
+                  src={page.media[presenter.currentImageIndex].url}
                   alt={`Image ${presenter.currentImageIndex + 1} of ${page.title}`}
                   className="w-full h-full object-cover"
                   initial={{ opacity: 0 }}
@@ -67,7 +67,7 @@ export const ConsultPageSection = ({ page }: { page: PageDetail }) => {
               </AnimatePresence>
             </div>
 
-            {page.images.length > 1 && (
+            {page.media.length > 1 && (
               <>
                 <Button
                   variant="ghost"
@@ -90,7 +90,7 @@ export const ConsultPageSection = ({ page }: { page: PageDetail }) => {
                 </Button>
 
                 <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
-                  {page.images.map((_, index) => (
+                  {page.media.map((_, index) => (
                     <button
                       key={index}
                       className={`h-1.5 rounded-full transition-all ${

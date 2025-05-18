@@ -72,7 +72,8 @@ export type AttachedFile = {
   id: string
   type: "image" | "music"
   name: string
-  url: string
+  url: string,
+  file?: File
 }
 
 export type Theme = {

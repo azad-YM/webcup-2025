@@ -9,6 +9,7 @@ use App\Models\FarewellPage;
 use App\Models\Mood;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
@@ -54,9 +55,7 @@ class FarewellPageController extends Controller
     // Tu récupères les données brutes
     $data = $request->all();
 
-    // Tu trouves le mood via son nom
     $mood = Mood::where('name', $data['mood'] ?? 'Dramatique')->first();
-    
     // Tu crées la page directement
     $page = FarewellPage::create([
       'title' => $data['title'] ?? 'Sans titre',
@@ -66,14 +65,24 @@ class FarewellPageController extends Controller
       'mood_id' => $mood->id,
       'author_id' => Auth::user()?->id,
       'song' => null,
-      'color' => $data['theme'] ?? 'bg-gray-500',
+      'theme' => $data['theme'],
       'likes' => 0,
       'views' => 0,
     ]);
 
-    return redirect('/')
-    ->with('success', 'Votre page d\'adieu est maintenant en ligne.');
-  }
+    if ($request->hasFile('attachedFiles')) {
+      foreach ($request->file('attachedFiles') as $uploadedFile) {
+        // Stockage dans public/pages
+        $path = $uploadedFile->store('pages', 'public');
 
+        // Enregistrement dans la table page_media (relation)
+        $page->media()->create([
+          'url' => Storage::url($path),
+        ]);
+      }
+    }
+
+    return response()->json(status: '201');
+  }
 
 }
