@@ -57,3 +57,26 @@ export function formatMessage(message: string): string {
 
   return formattedMessage
 }
+
+import { formatDistanceToNow } from 'date-fns'
+import { fr } from 'date-fns/locale'
+
+/**
+ * Formatte une date ISO en format relatif (ex: "il y a 2 minutes")
+ * @param isoDate - une date au format ISO ex: "2025-05-18T05:59:52.000000Z"
+ * @returns une chaîne comme "il y a 1 jour"
+ */
+export function formatRelativeDate(isoDate?: string): string {
+  if (!isoDate) return ""
+  
+  try {
+    const date = new Date(isoDate)
+    return formatDistanceToNow(date, {
+      addSuffix: true,
+      locale: fr,
+    })
+  } catch (error) {
+    console.error("Date invalide :", isoDate)
+    return isoDate
+  }
+}

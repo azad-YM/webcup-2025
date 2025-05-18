@@ -20,6 +20,7 @@ class FarewellPage extends Model
 			'theme',
 			'likes',
 			'views',
+            'created_at'
     ];
 
     public function author()

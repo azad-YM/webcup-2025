@@ -9,6 +9,8 @@ import { MoodSelector } from "./mood-selector"
 import { Page } from "@/lib/types"
 import { useTrendingPage } from "./trending-pages.hook"
 import { SkeletonTrandingPages } from "./skeleton-tranding-pages"
+import { formatRelative } from "date-fns"
+import { formatRelativeDate } from "@/lib/utils"
 
 export function TrendingPages() {
   const presenter = useTrendingPage()
@@ -56,15 +58,13 @@ const ShowedTrendingPages = ({ trendingPages }: { trendingPages: Page[] }) => {
                     src={page.image || "/placeholder.svg"}
                     alt={page.title}
                     className="w-full h-full object-cover transition-transform duration-500"
-                    // style={{
-                    //   transform: isHovered ? "scale(1.05)" : "scale(1)",
-                    // }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <Badge className={`absolute top-3 right-3 ${page.moodColor}`}>{page.mood}</Badge>
                 </div>
               </CardHeader>
-              <CardContent className="p-4">
+              <CardContent className="px-4 py-2">
+                <span className="text-xs text-gray-500 mb-2">{formatRelativeDate(page.createdAt)}</span>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-rose-500 transition-colors">{page.title}</h3>
                 <p className="text-muted-foreground">{page.excerpt}</p>
               </CardContent>

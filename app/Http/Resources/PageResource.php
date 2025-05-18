@@ -20,6 +20,7 @@ class PageResource extends JsonResource
       'image' => $this->media->first()->url ?? '/placeholder.svg',
       'slug' => $this->slug,
       'theme' => $this->theme,
+      'createdAt' => $this->created_at,
     ];
   }
 }

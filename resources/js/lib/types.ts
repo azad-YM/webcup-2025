@@ -9,12 +9,12 @@ export type Page = {
   image: string;
   slug: string;
   theme: string;
-
+  createdAt?: string;
 }
 
 export type PageDetail = {
   content: string,
-  images: Array<string>,
+  media: Array<{url: string}>,
   song: string,
   author: Author,
   date: string,
