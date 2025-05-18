@@ -11,7 +11,7 @@ Route::get('/', function () {
 Route::group([], function() {
     Route::get('/', fn() => Inertia::render('welcome'))->name('home');
     Route::get('/create', fn() => Inertia::render('post/create'))->name("create");
-    Route::get('/{slug}', [FarewellPageController::class, 'show'])->name("show");
+    Route::get('/page/{slug}', [FarewellPageController::class, 'show'])->name("show");
 });
 
 Route::group([], function() {

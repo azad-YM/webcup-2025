@@ -9,8 +9,9 @@ import { UserMenu } from "@/components/user-menu"
 import { router } from "@inertiajs/react"
 import { useHero } from "./hero.hook"
 import { colors, emojis } from "@/lib/data"
+import { User } from "@/types"
 
-export function HeroSection() {
+export function HeroSection({ user }: { user?: User }) {
   const presenter = useHero()
 
   // Icônes pour l'explosion
@@ -27,7 +28,7 @@ export function HeroSection() {
   return (
     <>
       {/* Menu utilisateur */}
-      <UserMenu isVisible={presenter.isMenuVisible} />
+      <UserMenu user={user} isVisible={presenter.isMenuVisible} />
 
       <section
         ref={presenter.heroRef}

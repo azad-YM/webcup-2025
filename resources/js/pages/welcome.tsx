@@ -14,7 +14,7 @@ export default function Welcome() {
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
       </Head>
       <main className="min-h-screen bg-background">
-        <HeroSection />
+        <HeroSection user={auth.user} />
         <TrendingPages />
       </main>
     </RootLayout>

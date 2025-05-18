@@ -3,16 +3,19 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { LogIn, LogOut, Settings, User } from "lucide-react"
+import {  LogIn, LogOut, Settings, User } from "lucide-react"
 import { motion } from "framer-motion"
+import { Link, router, usePage } from "@inertiajs/react"
+import { User as UserAuth } from "@/types"
 
 interface UserMenuProps {
   isVisible: boolean
+  user?: UserAuth
 }
 
-export function UserMenu({ isVisible }: UserMenuProps) {
+export function UserMenu({ isVisible, user }: UserMenuProps) {
   // État simulant la connexion de l'utilisateur (à remplacer par votre logique d'authentification)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(user !== null)
 
   // Fonction de connexion/déconnexion (à remplacer par votre logique d'authentification)
   const toggleLogin = () => {
@@ -42,8 +45,8 @@ export function UserMenu({ isVisible }: UserMenuProps) {
                 </AvatarFallback>
               </Avatar>
               <div className="mt-2 text-center">
-                <p className="text-sm font-medium text-white">User Name</p>
-                <p className="text-xs text-white/70">user@example.com</p>
+                <p className="text-sm font-medium text-white">{user?.name}</p>
+                <p className="text-xs text-white/70">{user?.email}</p>
               </div>
             </div>
 
@@ -52,23 +55,18 @@ export function UserMenu({ isVisible }: UserMenuProps) {
 
             {/* Options de menu */}
             <div className="flex flex-col items-center w-full space-y-2">
-              <Button variant="ghost" size="sm" className="w-full justify-start text-white hover:bg-white/10">
+              <Link href={route('profile.edit')} className="w-full inline-flex items-center justify-start px-2 py-1 rounded-md gap-2 text-white hover:bg-white/10 hover:text-white">
                 <User className="mr-2 h-4 w-4" />
                 <span>Profile</span>
-              </Button>
-
-              <Button variant="ghost" size="sm" className="w-full justify-start text-white hover:bg-white/10">
-                <Settings className="mr-2 h-4 w-4" />
-                <span>Settings</span>
-              </Button>
+              </Link>
 
               <div className="w-full h-px bg-white/20" />
 
               <Button
                 variant="ghost"
                 size="sm"
-                className="w-full justify-start text-white hover:bg-white/10"
-                onClick={toggleLogin}
+                className="w-full justify-start text-white hover:bg-white/10 hover-text-white"
+                onClick={() => router.post(route('logout'))}
               >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Log out</span>
@@ -76,14 +74,13 @@ export function UserMenu({ isVisible }: UserMenuProps) {
             </div>
           </>
         ) : (
-          <Button
-            variant="ghost"
+          <Link
+            href={'/login'}
             className="text-white hover:bg-white/10 flex items-center space-x-2"
-            onClick={toggleLogin}
           >
             <LogIn className="h-5 w-5" />
             <span>Log in</span>
-          </Button>
+          </Link>
         )}
       </div>
     </motion.div>
