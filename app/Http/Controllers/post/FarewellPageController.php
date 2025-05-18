@@ -46,9 +46,14 @@ class FarewellPageController extends Controller
    */
   public function store(Request $request)
   {
+    $author = Auth::user();
+    if ($author === null) {
+      throw new \Exception("Vous dévez d'abord vous connectez !");
+    }
+
     // Tu récupères les données brutes
     $data = $request->all();
-    
+
     // Tu trouves le mood via son nom
     $mood = Mood::where('name', $data['mood'] ?? 'Dramatique')->first();
 
@@ -59,7 +64,7 @@ class FarewellPageController extends Controller
       'slug' => Str::slug(($data['title'] ?? 'page') . '-' . Str::random(4)),
       'content' => $data['message'] ?? '',
       'mood_id' => $mood->id,
-      'author_id' => Auth::user()?->id ?? 1,
+      'author_id' => Auth::user()?->id,
       'song' => null,
       'color' => $data['theme'] ?? 'bg-gray-500',
       'likes' => 0,

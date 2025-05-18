@@ -28,7 +28,8 @@ export const postPage = async (data: {
     })
 
     if (!res.ok) {
-      throw new Error("Errrooor !!! Veuillez resseyer plus tard")
+      const error = await res.json()
+      throw new Error(error.message ?? "Errrooor !!! Veuillez resseyer plus tard")
     }
   } catch (error) {
     return error

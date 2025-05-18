@@ -135,21 +135,43 @@ export function HeroSection({ user }: { user?: User }) {
             onClick={presenter.createEmojiBurst}
             className="relative"
           >
-            <Button
-              size="lg"
-              className="bg-rose-500 hover:bg-rose-600 text-white font-bold px-8 py-6 text-lg rounded-full relative overflow-hidden"
-              onClick={() => router.get("/create")}
-            >
-              <span className="relative z-10">Create my page</span>
+            {user !== null
+              ? (
+                <Button
+                  size="lg"
+                  className="bg-rose-500 hover:bg-rose-600 text-white font-bold px-8 py-6 text-lg rounded-full relative overflow-hidden"
+                  onClick={() => router.get("/create")}
+                >
+                  <span className="relative z-10">Créer ma page</span>
 
-              {/* Effet de brillance au survol */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                initial={{ x: "-100%" }}
-                animate={{ x: presenter.isHovering ? "100%" : "-100%" }}
-                transition={{ duration: 0.8 }}
-              />
-            </Button>
+                  {/* Effet de brillance au survol */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    initial={{ x: "-100%" }}
+                    animate={{ x: presenter.isHovering ? "100%" : "-100%" }}
+                    transition={{ duration: 0.8 }}
+                  />
+                </Button>
+              )
+              : (
+                <Button
+                  size="lg"
+                  className="bg-rose-500 hover:bg-rose-600 text-white font-bold px-8 py-6 text-lg rounded-full relative overflow-hidden"
+                  onClick={() => router.get("/login")}
+                >
+                  <span className="relative z-10">Connectez-vous pour créer une page</span>
+
+                  {/* Effet de brillance au survol */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    initial={{ x: "-100%" }}
+                    animate={{ x: presenter.isHovering ? "100%" : "-100%" }}
+                    transition={{ duration: 0.8 }}
+                  />
+                </Button>
+              )
+            }
+            
 
             {/* Explosion d'emojis au clic */}
             <AnimatePresence>
