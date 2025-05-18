@@ -1,5 +1,4 @@
 import { getMoods, getPages } from "@/lib/api"
-import { moods } from "@/lib/data"
 import { useQuery } from "@tanstack/react-query"
 
 export const useTrendingPage = () => {

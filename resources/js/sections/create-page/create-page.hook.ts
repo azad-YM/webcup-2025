@@ -1,6 +1,8 @@
 import { getMoods, postPage } from "@/lib/api"
 import { AttachedFile } from "@/lib/types"
+import { router } from "@inertiajs/react"
 import { useMutation, useQuery } from "@tanstack/react-query"
+import { inertia } from "framer-motion"
 import { useRef, useState } from "react"
 import { toast } from "sonner"
 
@@ -10,7 +12,6 @@ export const useCreatePage = () => {
   const [message, setMessage] = useState("")
   const [theme, setTheme] = useState("minimal")
   const [selectedSong, setSelectedSong] = useState<string | null>(null)
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [showMusicDialog, setShowMusicDialog] = useState(false)
   const [previewMode, setPreviewMode] = useState(false)
   const [attachedFiles, setAttachedFiles] = useState<AttachedFile[]>([])
@@ -44,7 +45,6 @@ export const useCreatePage = () => {
       return
     }
 
-    setIsSubmitting(true)
     const data = {
       title,
       message,
@@ -52,9 +52,15 @@ export const useCreatePage = () => {
       mood,
       attachedFiles
     }
+
     toast.promise(mutationPage.mutateAsync(data), {
-      success: () => {
-        return "Votre page d'adieu est maintenant en ligne."
+      success: async () => {
+        setTimeout(() => {
+          router.get('/')
+        }, 300)
+       
+
+        return "Votre page d'adieu est en ligne !"
       },
       error: (error) => {
         console.error("error", error.message)
@@ -146,7 +152,6 @@ export const useCreatePage = () => {
     setTheme,
     selectedSong,
     setMessage,
-    isSubmitting,
     showMusicDialog,
     setShowMusicDialog,
     previewMode,

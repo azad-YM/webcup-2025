@@ -6,7 +6,10 @@ namespace App\Http\Controllers\Post;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PageResource;
 use App\Models\FarewellPage;
+use App\Models\Mood;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class FarewellPageController extends Controller
@@ -38,24 +41,34 @@ class FarewellPageController extends Controller
     ]);
   }
 
-  // Optionnel : méthode pour créer une page
-  /*
+  /**
+   * Post /api/pages
+   */
   public function store(Request $request)
   {
-      $validated = $request->validate([
-          'title' => 'required|string|max:255',
-          'excerpt' => 'required|string',
-          'slug' => 'required|string|unique:farewell_pages',
-          'content' => 'required|string',
-          'mood_id' => 'required|exists:moods,id',
-          'author_id' => 'required|exists:authors,id',
-          'song' => 'nullable|string',
-          'color' => 'required|string'
-      ]);
+    // Tu récupères les données brutes
+    $data = $request->all();
+    
+    // Tu trouves le mood via son nom
+    $mood = Mood::where('name', $data['mood'] ?? 'Dramatique')->first();
 
-      $page = FarewellPage::create($validated);
+    // Tu crées la page directement
+    $page = FarewellPage::create([
+      'title' => $data['title'] ?? 'Sans titre',
+      'excerpt' => Str::limit($data['message'] ?? '', 120),
+      'slug' => Str::slug(($data['title'] ?? 'page') . '-' . Str::random(4)),
+      'content' => $data['message'] ?? '',
+      'mood_id' => $mood->id,
+      'author_id' => Auth::user()?->id ?? 1,
+      'song' => null,
+      'color' => $data['theme'] ?? 'bg-gray-500',
+      'likes' => 0,
+      'views' => 0,
+    ]);
 
-      return response()->json($page, 201);
+    return redirect('/')
+    ->with('success', 'Votre page d\'adieu est maintenant en ligne.');
   }
-  */
+
+
 }
