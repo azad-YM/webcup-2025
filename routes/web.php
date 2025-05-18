@@ -18,9 +18,9 @@ Route::group([], function() {
     Route::get('/api/pages',  [FarewellPageController::class, 'index']);
     Route::get('/api/moods',  [\App\Http\Controllers\Post\MoodController::class, 'index']);
 });
-Route::post('/api/pages', [FarewellPageController::class, 'store']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('/api/pages', [FarewellPageController::class, 'store']);
 });
 
 require __DIR__.'/settings.php';
