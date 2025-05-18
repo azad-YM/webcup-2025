@@ -25,8 +25,8 @@ type Props = {
   themes: Theme[],
   togglePreview: () => void,
   handleSubmit: () => void,
-  isSubmitting: boolean,
   moods: Mood[]
+  createPageIsPending: boolean
 }
 
 export const EditPage = ({ 
@@ -47,8 +47,8 @@ export const EditPage = ({
   themes,
   togglePreview,
   handleSubmit,
-  isSubmitting,
-  moods
+  moods,
+  createPageIsPending
 }: Props) => {
   return (
     <div className="space-y-8">
@@ -135,10 +135,10 @@ export const EditPage = ({
           </Button>
           <Button
             onClick={handleSubmit}
-            disabled={isSubmitting || !title || !message}
+            disabled={createPageIsPending || !title || !message}
             className="bg-rose-500 hover:bg-rose-600 text-white"
           >
-            {isSubmitting ? (
+            {createPageIsPending ? (
               <>
                 <span className="mr-2">Publication...</span>
                 <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

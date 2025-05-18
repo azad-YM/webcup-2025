@@ -1,12 +1,11 @@
-import { getMoods } from "@/lib/api"
+import { getMoods, postPage } from "@/lib/api"
 import { AttachedFile } from "@/lib/types"
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 import { useRef, useState } from "react"
 import { toast } from "sonner"
 
 export const useCreatePage = () => {
-
-  const [mood, setMood] = useState("dramatic")
+  const [mood, setMood] = useState("")
   const [title, setTitle] = useState("")
   const [message, setMessage] = useState("")
   const [theme, setTheme] = useState("minimal")
@@ -18,17 +17,8 @@ export const useCreatePage = () => {
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const moods = [
-    { value: "dramatic", label: "😭 Dramatic", color: "bg-rose-500" },
-    { value: "ironic", label: "😂 Ironic", color: "bg-amber-500" },
-    { value: "honest", label: "😐 Honest", color: "bg-blue-500" },
-    { value: "classy", label: "💅 Classy", color: "bg-purple-500" },
-    { value: "absurd", label: "🤪 Absurd", color: "bg-green-500" },
-    { value: "cringe", label: "🫣 Cringe", color: "bg-pink-500" },
-    { value: "passive-aggressive", label: "😒 Passive-aggressive", color: "bg-indigo-500" },
-  ]
-
   const queryMoods = useQuery({ queryKey: ['moods'], queryFn: getMoods })
+  const mutationPage = useMutation({ mutationFn: postPage })
 
   const themes = [
     { value: "minimal", label: "Minimal" },
@@ -55,15 +45,22 @@ export const useCreatePage = () => {
     }
 
     setIsSubmitting(true)
-
-    // Simulate API call
-    setTimeout(() => {
-      toast.success("Page créée avec succès !", {
-        description: "Votre page d'adieu est maintenant en ligne.",
-      })
-
-      setIsSubmitting(false)
-    }, 1500)
+    const data = {
+      title,
+      message,
+      theme,
+      mood,
+      attachedFiles
+    }
+    toast.promise(mutationPage.mutateAsync(data), {
+      success: () => {
+        return "Votre page d'adieu est maintenant en ligne."
+      },
+      error: (error) => {
+        console.error("error", error.message)
+        return error.message
+      }
+    })
   }
 
   const togglePreview = () => {
@@ -164,6 +161,7 @@ export const useCreatePage = () => {
     handleFileChange,
     handleAddMusic,
     handleRemoveFile,
-    moods: queryMoods.data ?? []
+    moods: queryMoods.data ?? [],
+    pageCreateIsPending: mutationPage.isPending
   }
 }

@@ -12,7 +12,7 @@ import { SkeletonTrandingPages } from "./skeleton-tranding-pages"
 
 export function TrendingPages() {
   const presenter = useTrendingPage()
-  console.log(presenter.pages)
+  
   return (
     <div className='md:w-[80%] mx-auto'>
       <section className="container px-4 py-8">

@@ -11,7 +11,7 @@ type Props = {
   selectedSong: string|null,
   message: string,
   handleSubmit: () => void,
-  isSubmitting: boolean,
+  createPageIsPending: boolean
 }
 
 export const PreviewPage = ({
@@ -22,7 +22,7 @@ export const PreviewPage = ({
   selectedSong,
   message,
   handleSubmit,
-  isSubmitting,
+  createPageIsPending
 }: Props) => {
 
   return (
@@ -75,10 +75,10 @@ export const PreviewPage = ({
         <Button
           onClick={handleSubmit}
           size="lg"
-          disabled={isSubmitting}
+          disabled={createPageIsPending}
           className="bg-rose-500 hover:bg-rose-600 text-white"
         >
-          {isSubmitting ? (
+          {createPageIsPending ? (
             <>
               <span className="mr-2">Publication...</span>
               <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

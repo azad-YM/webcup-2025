@@ -24,7 +24,7 @@ export const CreatePageSection = () => {
                 message={presenter.message}
                 selectedSong={presenter.selectedSong}
                 handleSubmit={presenter.handleSubmit}
-                isSubmitting={presenter.isSubmitting}
+                createPageIsPending={presenter.pageCreateIsPending}
               />
             : <EditPage 
                 title={presenter.title}
@@ -37,7 +37,6 @@ export const CreatePageSection = () => {
                 theme={presenter.theme}
                 setTheme={presenter.setTheme}
                 attachedFiles={presenter.attachedFiles}
-                isSubmitting={presenter.isSubmitting}
                 fileInputRef={presenter.fileInputRef}
                 togglePreview={presenter.togglePreview}
                 handleAddImage={presenter.handleAddImage}
@@ -46,6 +45,7 @@ export const CreatePageSection = () => {
                 handleFileChange={presenter.handleFileChange}
                 themes={presenter.themes}
                 handleSubmit={presenter.handleSubmit}
+                createPageIsPending={presenter.pageCreateIsPending}
               />
           }
         </div>
