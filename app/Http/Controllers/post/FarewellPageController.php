@@ -56,7 +56,7 @@ class FarewellPageController extends Controller
 
     // Tu trouves le mood via son nom
     $mood = Mood::where('name', $data['mood'] ?? 'Dramatique')->first();
-
+    
     // Tu crées la page directement
     $page = FarewellPage::create([
       'title' => $data['title'] ?? 'Sans titre',
