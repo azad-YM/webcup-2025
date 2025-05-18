@@ -17,7 +17,7 @@ class FarewellPage extends Model
 			'mood_id',
 			'author_id',
 			'song',
-			'color',
+			'theme',
 			'likes',
 			'views',
     ];

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('mood_id')->constrained()->onDelete('cascade');
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
             $table->string('song')->nullable();
-            $table->string('color');
+            $table->string('theme');
             $table->unsignedInteger('likes')->default(0);
             $table->unsignedInteger('views')->default(0);
             $table->timestamps();

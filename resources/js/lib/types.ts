@@ -3,11 +3,13 @@ export type Page = {
   title: string;
   excerpt: string;
   mood: string;
+  moodColor: string,
   likes: number;
   views: number;
   image: string;
   slug: string;
-  color: string;
+  theme: string;
+
 }
 
 export type PageDetail = {

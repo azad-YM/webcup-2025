@@ -61,7 +61,7 @@ const ShowedTrendingPages = ({ trendingPages }: { trendingPages: Page[] }) => {
                     // }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                  <Badge className={`absolute top-3 right-3 ${page.color}`}>{page.mood}</Badge>
+                  <Badge className={`absolute top-3 right-3 ${page.moodColor}`}>{page.mood}</Badge>
                 </div>
               </CardHeader>
               <CardContent className="p-4">

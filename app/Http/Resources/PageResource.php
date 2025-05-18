@@ -14,11 +14,12 @@ class PageResource extends JsonResource
       'title' => $this->title,
       'excerpt' => $this->excerpt,
       'mood' => optional($this->mood)->name, // mood est une relation
+      'moodColor' => optional($this->mood)->color,
       'likes' => $this->likes,
       'views' => $this->views,
       'image' => $this->media->first()->url ?? '/placeholder.svg',
       'slug' => $this->slug,
-      'color' => optional($this->mood)->color,
+      'theme' => $this->theme,
     ];
   }
 }

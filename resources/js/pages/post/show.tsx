@@ -13,6 +13,7 @@ import { Link, router } from "@inertiajs/react"
 import RootLayout from "@/layouts/app/app"
 import { ConsultPageSection } from "@/sections/consult-page/consult-page"
 import { PageDetail } from "@/lib/types"
+import { cn, getThemeBackground } from "@/lib/utils"
 
 export default function PageView({ page }: { page: PageDetail }) {
   if (!page) {
@@ -36,9 +37,11 @@ export default function PageView({ page }: { page: PageDetail }) {
     })
   }
 
+  const theme = getThemeBackground(page.theme)
+
   return (
     <RootLayout>
-      <main className={`min-h-screen bg-${page.color}-500 text-white`}>
+      <main className={cn("min-h-screen text-white", theme)}>
         <div className="absolute z-0 inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay"></div>
 
         {/* Header with back button */}

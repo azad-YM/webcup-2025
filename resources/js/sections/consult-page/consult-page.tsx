@@ -22,7 +22,7 @@ import { useConsultPage } from "./consult-page.hook"
 
 export const ConsultPageSection = ({ page }: { page: PageDetail }) => {
   const presenter = useConsultPage(page)
-  console.log(page, "jsdk")
+  
   return (
     <div className="relative z-1 container mx-auto px-4 py-6 md:py-12">
       <motion.div
